@@ -1,0 +1,77 @@
+.game-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background: radial-gradient(circle, #4ade80, #16a34a);
+  }
+  
+  .falling-fruit {
+    position: absolute;
+    user-select: none;
+    pointer-events: none;
+    transition: transform 0.2s ease-out;
+  }
+  
+  .knife-trail-svg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+  }
+  
+  .splash-effect {
+    position: absolute;
+    pointer-events: none;
+    animation: splash-pop 0.3s ease-out forwards;
+  }
+  
+  .splash-particle {
+    position: absolute;
+    font-size: 24px;
+    animation: splash-move 0.3s ease-out forwards;
+  }
+  
+  @keyframes splash-pop {
+    from { opacity: 1; transform: scale(1); }
+    to { opacity: 0; transform: scale(2); }
+  }
+  
+  @keyframes splash-move {
+    from { transform: translate(0, 0); }
+    to { transform: translate(calc(30px - 60px * random()), calc(30px - 60px * random())); }
+  }
+  
+  .scoreboard {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+  }
+  .splash-message {
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+    animation: fade-out-up 0.8s forwards;
+  }
+  
+  @keyframes fade-out-up {
+    0% {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+    100% {
+      opacity: 0;
+      transform: translateX(-50%) translateY(-30px);
+    }
+  }
+    
