@@ -21,36 +21,39 @@ const FruitNinja = ({ onUnlock }) => {
   const [knifeTrail, setKnifeTrail] = useState([]);
   const [splashes, setSplashes] = useState([]);
   const [unlocked, setUnlocked] = useState(false);
+  const [isSoundOn, setIsSoundOn] = useState(false); // Default to off for sound
   const gameAreaRef = useRef(null);
+  const lastPointRef = useRef(null); // To track the last point for better knife detection
 
-  // Sound effect references
-  const knifeCutSound = new Audio('/sounds/knife-cut.mp3');
-  const backgroundMusic = new Audio('/sounds/background-music.mp3');
+  // Sound effect reference
+  const knifeCutSoundRef = useRef(null);
 
   useEffect(() => {
-    // Play background music on loop when the game starts
-    backgroundMusic.loop = true;
-    backgroundMusic.volume = 0.3; // Adjust volume as needed
-    backgroundMusic.play();
+    // Initialize knife cut sound
+    knifeCutSoundRef.current = new Audio('/sounds/knife-cut.mp3');
+    knifeCutSoundRef.current.volume = 0.3; // Adjust volume as needed
+  }, []);
 
+  const handleSoundToggle = () => {
+    setIsSoundOn((prev) => !prev);
+  };
+
+  useEffect(() => {
     const fruitInterval = setInterval(() => {
       const newFruit = {
         id: Date.now() + Math.random(),
         fruit: fruits[Math.floor(Math.random() * fruits.length)],
-        x: window.innerWidth * 0.2 + Math.random() * window.innerWidth * 0.6,
+        x: Math.random() * window.innerWidth,
         y: window.innerHeight + 50,
         speedX: (Math.random() - 0.5) * 2,
-        speedY: -Math.random() * 12 - 10,  // Higher and slower
+        speedY: -Math.random() * 12 - 10,
         rotation: Math.random() * 360,
         scale: 0.8 + Math.random() * 0.4,
       };
       setFruitsInAir((prev) => [...prev, newFruit]);
-    }, 600); // Slow fruit spawning
+    }, 600);
 
-    return () => {
-      clearInterval(fruitInterval);
-      backgroundMusic.pause(); // Stop background music when the game ends
-    };
+    return () => clearInterval(fruitInterval);
   }, []);
 
   useEffect(() => {
@@ -81,14 +84,34 @@ const FruitNinja = ({ onUnlock }) => {
   }, [splashes]);
 
   const handleMouseMove = (e) => {
+    if (!gameAreaRef.current) return;
+
     const rect = gameAreaRef.current.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
 
-    setKnifeTrail((trail) => {
-      const newTrail = [...trail, { x, y }];
-      return newTrail.slice(-15);
-    });
+    // Add intermediate points if the movement was large
+    const newPoints = [];
+    if (lastPointRef.current) {
+      const distance = Math.sqrt(
+        Math.pow(x - lastPointRef.current.x, 2) + Math.pow(y - lastPointRef.current.y, 2)
+      );
+
+      if (distance > 30) {
+        const steps = Math.floor(distance / 15);
+        for (let i = 1; i <= steps; i++) {
+          const ratio = i / steps;
+          newPoints.push({
+            x: lastPointRef.current.x + (x - lastPointRef.current.x) * ratio,
+            y: lastPointRef.current.y + (y - lastPointRef.current.y) * ratio
+          });
+        }
+      }
+    }
+
+    lastPointRef.current = { x, y };
+    const updatedTrail = [...knifeTrail, ...newPoints, { x, y }].slice(-20);
+    setKnifeTrail(updatedTrail);
 
     setFruitsInAir((prevFruits) => {
       const newFruits = [];
@@ -96,12 +119,16 @@ const FruitNinja = ({ onUnlock }) => {
 
       prevFruits.forEach((fruit) => {
         let isCut = false;
-        for (let i = 0; i < knifeTrail.length; i++) {
-          const point = knifeTrail[i];
+
+        // Check against all points in the trail
+        for (let i = 0; i < updatedTrail.length; i++) {
+          const point = updatedTrail[i];
           const dx = fruit.x - point.x;
           const dy = fruit.y - point.y;
           const distance = Math.sqrt(dx * dx + dy * dy);
-          if (distance < 40) {
+
+          // Increased hit radius and check against fruit size
+          if (distance < 40 * fruit.scale) {
             isCut = true;
             break;
           }
@@ -109,7 +136,10 @@ const FruitNinja = ({ onUnlock }) => {
 
         if (isCut) {
           cutFruits.push(fruit);
-          knifeCutSound.play(); // Play knife cut sound when a fruit is cut
+          if (isSoundOn && knifeCutSoundRef.current) {
+            knifeCutSoundRef.current.currentTime = 0;
+            knifeCutSoundRef.current.play().catch(e => console.error("Sound error:", e));
+          }
         } else {
           newFruits.push(fruit);
         }
@@ -141,85 +171,75 @@ const FruitNinja = ({ onUnlock }) => {
   };
 
   return (
-    <div
-      className="game-container"
-      ref={gameAreaRef}
-      onMouseMove={handleMouseMove}
-      onTouchMove={(e) => {
-        e.preventDefault();
-        handleMouseMove(e.touches[0]);
-      }}
-    >
-      {fruitsInAir.map((fruit) => (
-        <div
-          key={fruit.id}
-          className="falling-fruit"
-          style={{
-            left: `${fruit.x}px`,
-            top: `${fruit.y}px`,
-            transform: `translate(-50%, -50%) rotate(${fruit.rotation}deg) scale(${fruit.scale})`,
-            fontSize: `${fruit.scale * 50}px`,
-          }}
-        >
-          {fruit.fruit}
+    <div className="fruit-ninja-container">
+      <button
+        onClick={handleSoundToggle}
+        className="sound-toggle-button"
+      >
+        {isSoundOn ? '🔊' : '🔇'}
+      </button>
+      <div
+        className="game-container"
+        ref={gameAreaRef}
+        onMouseMove={handleMouseMove}
+        onTouchMove={(e) => {
+          e.preventDefault();
+          if (e.touches[0]) handleMouseMove(e.touches[0]);
+        }}
+      >
+        {fruitsInAir.map((fruit) => (
+          <div
+            key={fruit.id}
+            className="falling-fruit"
+            style={{
+              left: `${fruit.x}px`,
+              top: `${fruit.y}px`,
+              transform: `translate(-50%, -50%) rotate(${fruit.rotation}deg) scale(${fruit.scale})`,
+              fontSize: `${fruit.scale * 50}px`,
+            }}
+          >
+            {fruit.fruit}
+          </div>
+        ))}
+
+        {splashes.map((splash) => (
+          <div
+            key={splash.id}
+            className="splash-effect"
+            style={{
+              left: `${splash.x}px`,
+              top: `${splash.y}px`,
+            }}
+          >
+            {[...Array(6)].map((_, i) => (
+              <div
+                key={i}
+                className="splash-particle"
+                style={{
+                  backgroundColor: fruitColors[splash.fruit],
+                }}
+              ></div>
+            ))}
+          </div>
+        ))}
+
+        <svg className="knife-trail-svg">
+          {knifeTrail.length > 1 && (
+            <polyline
+              points={knifeTrail.map((p) => `${p.x},${p.y}`).join(' ')}
+              fill="none"
+              stroke="white"
+              strokeWidth="4"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeOpacity="0.7"
+            />
+          )}
+        </svg>
+
+        <div className="scoreboard">
+          <p>Cut Fruits: {score} / 50</p>
         </div>
-      ))}
-
-      {splashes.map((splash) => (
-        <div
-          key={splash.id}
-          className="splash-effect"
-          style={{
-            left: `${splash.x}px`,
-            top: `${splash.y}px`,
-          }}
-        >
-          <div
-            className="splash-particle"
-            style={{
-              backgroundColor: fruitColors[splash.fruit],
-              borderRadius: '50%',
-              width: '20px',
-              height: '20px',
-            }}
-          ></div>
-          <div
-            className="splash-particle"
-            style={{
-              backgroundColor: fruitColors[splash.fruit],
-              borderRadius: '50%',
-              width: '20px',
-              height: '20px',
-            }}
-          ></div>
-          <div
-            className="splash-particle"
-            style={{
-              backgroundColor: fruitColors[splash.fruit],
-              borderRadius: '50%',
-              width: '20px',
-              height: '20px',
-            }}
-          ></div>
-        </div>
-      ))}
-
-      <svg className="knife-trail-svg">
-        {knifeTrail.length > 1 && (
-          <polyline
-            points={knifeTrail.map((p) => `${p.x},${p.y}`).join(' ')}
-            fill="none"
-            stroke="white"
-            strokeWidth="4"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeOpacity="0.7"
-          />
-        )}
-      </svg>
-
-      <div className="scoreboard">
-        <p>Cut Fruits: {score} / 50</p>
       </div>
     </div>
   );

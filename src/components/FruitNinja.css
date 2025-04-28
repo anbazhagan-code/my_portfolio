@@ -41,8 +41,9 @@
   
   @keyframes splash-move {
     from { transform: translate(0, 0); }
-    to { transform: translate(calc(30px - 60px * random()), calc(30px - 60px * random())); }
+    to { transform: translate(20px, -20px); }
   }
+  
   
   .scoreboard {
     position: absolute;
@@ -74,4 +75,22 @@
       transform: translateX(-50%) translateY(-30px);
     }
   }
-    
+  .sound-toggle-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 10px;
+    font-size: 20px;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    z-index:2;
+  }
+  
+  .sound-toggle-button:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+  
