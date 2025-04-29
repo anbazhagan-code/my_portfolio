@@ -1,0 +1,52 @@
+/* General Section Styling */
+.section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(120deg, #84fab0, #8fd3f4);
+    padding: 20px;
+    text-align: center;
+  }
+  
+  /* Row Styling */
+  .container .row {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  /* Content Column Styling */
+  .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+    padding: 20px;
+  }
+  
+  .content h2 {
+    font-size: 2.5rem;
+    color: #333;
+  }
+  
+  .content p {
+    font-size: 1.2rem;
+    color: #666;
+    margin-top: 10px;
+  }
+  
+  /* Photo Column Styling */
+  .photo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .profile-image {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 50%;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  }
