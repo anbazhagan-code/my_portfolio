@@ -10,6 +10,7 @@ import ProjectsSection from './components/ProjectsSection';
 import TestimonialsSection from './components/TestimonialsSection';
 import ContactSection from './components/ContactSection';
 import './App.css';
+import '@fortawesome/fontawesome-free/css/all.min.css';
 
 const App = () => {
   const [unlocked, setUnlocked] = useState(false);

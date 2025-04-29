@@ -10,7 +10,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
+    width: 90%;
     padding: 1.5rem 5%;
     background: linear-gradient(120deg, #84fab0, #8fd3f4);
     backdrop-filter: blur(10px);
