@@ -71,7 +71,7 @@ const ContactSection = () => {
               </div>
               <div>
                 <h4>Email</h4>
-                <a href="mailto:anbazhagan@zaroid.in">anbazhagan@zaroid.in</a>
+                <a href="mailto:anbazhagan@zaroid.in">anbazhagan.code@gmail.com</a>
               </div>
             </div>
 
@@ -81,7 +81,7 @@ const ContactSection = () => {
               </div>
               <div>
                 <h4>Phone</h4>
-                <a href="tel:+91XXXXXXXXXX">+91-XXXXXXXXXX</a>
+                <a href="tel:+91XXXXXXXXXX">+91-9344230554</a>
               </div>
             </div>
 

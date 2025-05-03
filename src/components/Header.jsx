@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../../assets/css/Header.css';
+import logo from './assets/logo_1.png';
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -34,10 +35,9 @@ const Header = () => {
   return (
     <header className={`header ${scrolled ? 'scrolled' : ''}`}>
       <div className="header-container">
-        <div className="logo" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-          <span className="logo-initial">A</span>
-          <span className="logo-rest">nbu</span>
-        </div>
+      <div className="logo" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+  <img src={logo} alt="Anbu Logo" className="logo-img" />
+</div>
         
         <button className="mobile-menu-button" onClick={toggleMobileMenu}>
           <div className={`hamburger ${mobileMenuOpen ? 'open' : ''}`}>
