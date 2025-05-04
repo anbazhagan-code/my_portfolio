@@ -1,10 +1,12 @@
   /* General Section Styling */
+  .section, .skills-section{
+    background: linear-gradient(120deg, #84fab0, #8fd3f4);
+  }
 .section {
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(120deg, #84fab0, #8fd3f4);
   padding: 20px;
   text-align: center;
   position: relative;
@@ -136,6 +138,12 @@
   max-width: 350px;
 }
 
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
 .profile-image {
   width: 100%;
   border-radius: 20px;
@@ -143,6 +151,7 @@
   position: relative;
   z-index: 2;
   transition: all 0.5s ease;
+  animation: float 3s infinite ease-in-out;
 }
 
 .image-border {
