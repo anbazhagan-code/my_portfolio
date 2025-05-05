@@ -138,11 +138,6 @@
   max-width: 350px;
 }
 
-@keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-  100% { transform: translateY(0px); }
-}
 
 .profile-image {
   width: 100%;
@@ -151,7 +146,6 @@
   position: relative;
   z-index: 2;
   transition: all 0.5s ease;
-  animation: float 3s infinite ease-in-out;
 }
 
 .image-border {

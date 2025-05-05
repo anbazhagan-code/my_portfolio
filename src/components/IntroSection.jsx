@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import '../../assets/css/IntroSection.css';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import reactLogo from '../assets/profile_1.png';
+import reactLogo from './assets/profile_1.png';
 
 const IntroSection = () => {
   useEffect(() => {
