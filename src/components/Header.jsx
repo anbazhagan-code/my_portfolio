@@ -12,7 +12,7 @@ const Header = () => {
       setScrolled(window.scrollY > 50);
       
       // Highlight active section
-      const sections = ['home', 'skills', 'education', 'experience', 'projects', 'testimonials', 'contact'];
+      const sections = ['home', 'skills', 'education', 'experience', 'projects', 'contact'];
       sections.forEach(section => {
         const element = document.getElementById(section);
         if (element) {
@@ -48,7 +48,7 @@ const Header = () => {
         </button>
 
         <nav className={`nav-menu ${mobileMenuOpen ? 'open' : ''}`}>
-          {['home', 'skills', 'education', 'experience', 'projects', 'testimonials', 'contact'].map((item) => (
+          {['home', 'skills', 'education', 'experience', 'projects', 'contact'].map((item) => (
             <a 
               key={item}
               href={`#${item}`} 
