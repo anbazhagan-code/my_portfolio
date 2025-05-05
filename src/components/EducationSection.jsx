@@ -11,24 +11,25 @@ const EducationSection = () => {
       easing: 'ease-in-out',
       once: true, // Animations trigger only once
     });
+    AOS.refresh();
   }, []);
 
   const educationData = [
     {
       id: 1,
-      degree: "Bachelor's Degree in Computer Science",
+      degree: "Bachelor's Degree in Information Technology",
       school: "Indra Ganesan College of Engineering, Trichy",
       period: "2020 - 2024",
       icon: <FaGraduationCap className="edu-icon" />,
-      description: "Specialized in Web Development, Data Structures, and Algorithms. GPA: 8.4/10."
+      description: "Specialized in Web Development, DBMS, Data Structures, and Algorithms. GPA: 8.4/10."
     },
     {
       id: 2,
-      degree: "HSC (Computer Science) & SSLC",
+      degree: "HSC & SSLC",
       school: "Lions Matriculation Hr Sec School, Ponnamaravathy",
       period: "2018 - 2020 (HSC) | 2017 - 2018 (SSLC)",
       icon: <FaSchool className="edu-icon" />,
-      description: "Scored 68% in HSC (Computer Science) and 85% in SSLC."
+      description: "Scored 68% in HSC and 85% in SSLC."
     }
   ];
 
@@ -36,7 +37,7 @@ const EducationSection = () => {
     <section id="education" className="education-section">
       <div className="container">
         <h2 className="section-title" data-aos="fade-down">
-          <FaBook className="title-icon" /> Education
+          Education
         </h2>
         
         <div className="education-timeline">

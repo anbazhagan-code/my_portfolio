@@ -31,7 +31,6 @@ const App = () => {
           <EducationSection />
           <WorkExperienceSection />
           <ProjectsSection />
-          <TestimonialsSection />
           <ContactSection />
           <Footer />
         </>

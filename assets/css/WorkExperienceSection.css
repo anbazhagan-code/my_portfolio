@@ -23,6 +23,7 @@
     bottom: 0;
     left: 50%;
     margin-left: -1.5px;
+    z-index:-1;
   }
   
   .timeline-item {
@@ -51,7 +52,7 @@
   }
   
   .timeline-card:hover {
-    transform: translateY(-3px);
+    transform: scale(1.01) !important;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
   }
   
@@ -68,13 +69,31 @@
   }
   
   .timeline-item.left::after {
-    right: -10px;
+    right: -12px;
   }
   
   .timeline-item.right::after {
-    left: -10px;
+    left: -12px;
+  }
+  .timeline::after {
+    /* Existing styles */
+    animation: pulseLine 3s ease infinite;
   }
   
+  @keyframes pulseLine {
+    0%, 100% { opacity: 0.8; }
+    50% { opacity: 1; }
+  }
+  
+  .timeline-item::after {
+    /* Existing styles */
+    animation: pulseDot 2s ease infinite;
+  }
+  
+  @keyframes pulseDot {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+  }
   .card-header h3 {
     font-size: 1.3rem;
     color: #2d3748;
@@ -114,10 +133,19 @@
   }
   
   .card-body li {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.8rem;
     color: #4a5568;
     line-height: 1.6;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
+    position: relative;
+    list-style-type: none;
+  }
+  
+  .card-body li::before {
+    content: '▹';
+    position: absolute;
+    left: -1rem;
+    color: #6ba7c5;
   }
   
   .skills {
@@ -135,25 +163,86 @@
     font-size: 0.75rem;
     font-weight: 500;
   }
+  .skill-tag:hover {
+    background: #6ba7c5;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(107, 167, 197, 0.3);
+  }
+  .meta span {
+    transition: transform 0.3s ease;
+    display: inline-block;
+  }
+  
+  .meta span:hover {
+    transform: translateX(3px);
+    color: #6ba7c5;
+  }
+  
+  .timeline-card {
+    background: linear-gradient(135deg,
+      rgba(104, 232, 238, 0.9) 0%,
+      rgba(237, 242, 247, 0.95) 50%,
+      rgba(75, 183, 183, 0.9) 100%);
+    background-size: 200% 200%;
+    animation: metallicSheen 10s ease infinite;
+    position: relative;
+  }
+  
+  @keyframes metallicSheen {
+    0% { 
+      background-position: 0% 50%;
+      transform: perspective(500px) rotateY(0deg);
+    }
+    50% { 
+      background-position: 100% 50%;
+      transform: perspective(500px) rotateY(0deg);
+    }
+    100% { 
+      background-position: 0% 50%;
+      transform: perspective(500px) rotateY(0deg);
+    }
+  }
+  
+  .timeline-card::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.2) 50%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    animation: sheenMove 6s infinite;
+  }
   
   @media (max-width: 768px) {
     .timeline::after {
-      left: 31px;
+      left: 11px;
     }
   
     .timeline-item {
-      width: 100%;
-      padding-left: 70px;
+      width: 108%;
       padding-right: 25px;
+      padding-left:25px;
     }
   
     .timeline-item.left::after,
     .timeline-item.right::after {
-      left: 18px;
+      left: -12px;
     }
   
     .timeline-item.left,
     .timeline-item.right {
-      left: 0;
+      left: 10px;
+    }
+    .timeline {
+      position: relative;
+
+      margin: 0 auto;
+      padding: 0;
     }
   }
