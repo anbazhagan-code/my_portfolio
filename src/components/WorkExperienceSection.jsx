@@ -11,9 +11,10 @@ const WorkExperienceSection = () => {
       duration: "Feb 2025 - Present",
       location: "Kumbakonam, India",
       responsibilities: [
-        "Developing responsive web applications using modern frameworks",
-        "Collaborating with cross-functional teams to deliver high-quality products",
-        "Implementing RESTful APIs and integrating third-party services"
+        "Developing responsive web applications using modern frameworks.",
+        "Creating and customizing WordPress websites based on client requirements.",
+        "Managing and maintaining Laravel-based backend systems.",
+        "Testing and debugging applications to ensure cross-browser compatibility and performance."
       ],
       skills: ["HTML/CSS", "JavaScript", "Bootstrap", "Laravel", "Wordpress", "MySQL"]
     },
@@ -24,19 +25,20 @@ const WorkExperienceSection = () => {
       duration: "Apr 2024 - May 2024",
       location: "Trichy, India",
       responsibilities: [
-        "Assisted in developing and maintaining company websites",
-        "Learned industry best practices for web development",
-        "Participated in code reviews and team meetings"
+        "Learned industry best practices for web development.",
+        "Assisted in developing and maintaining company websites.",
+        "Worked on the development of an online exam portal, focusing on user interface and functionality."
       ],
       skills: ["HTML/CSS", "JavaScript", "PHP", "MySQL"]
     }
+    
   ];
 
   return (
     <section id="experience" className="work-experience">
       <div className="container">
         <h2 className="section-title">
-          <FaBriefcase className="title-icon" /> Work Experience
+          Work Experience
         </h2>
         
         <div className="timeline">

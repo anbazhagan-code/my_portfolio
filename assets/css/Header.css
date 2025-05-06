@@ -144,11 +144,13 @@
       top: 70px;
       left: 0;
       width: 100%;
+      right: 0;
+      width: 75%;
       background: linear-gradient(120deg, #84fab0, #8fd3f4);
       flex-direction: column;
       align-items: center;
       padding: 1rem 0;
-      gap: 1rem;
+      gap: 10px;
       box-shadow: var(--shadow);
       transform: translateY(-150%);
       transition: transform 0.3s ease;
