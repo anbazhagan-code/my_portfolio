@@ -51,7 +51,7 @@ const ContactSection = () => {
         <motion.h2 
           className="section-title"
         >
-          Get In Touch
+          Do you have any Project? Let’s Talk
         </motion.h2>
 
         <div className="contact-grid">

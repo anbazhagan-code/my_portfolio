@@ -1,0 +1,128 @@
+/* Service Section */
+#services {
+    padding: 5rem 1.25rem;
+    color: white;
+  }
+  
+  .services-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+  }
+  
+  /* Card Grid Layout - Default for 3 or fewer cards */
+  .card-grid {
+    display: flex;
+    justify-content: space-around;
+
+    gap: 2rem;
+  }
+  
+  /* Card Styles */
+  .service-card {
+    background: linear-gradient(135deg,rgb(33, 248, 255) 0%, #334155 100%);
+    border-radius: 1rem;
+    padding: 2.5rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    width: 100%;
+    max-width: 300px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  /* Background Animation */
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+      45deg,
+      rgba(100, 200, 200, 0.1) 0%,
+      rgba(100, 200, 200, 0.3) 50%,
+      rgba(100, 200, 200, 0.1) 100%
+    );
+    transform: rotate(45deg);
+    transition: all 0.6s ease;
+    opacity: 0;
+  }
+  
+  .service-card:hover::before {
+    animation: shine 1.5s infinite;
+    opacity: 1;
+  }
+  
+  @keyframes shine {
+    0% { left: -50%; }
+    100% { left: 150%; }
+  }
+  
+  /* Hover Effects */
+  .service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+  }
+  
+  .service-icon {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    transition: all 0.3s ease;
+  }
+  
+  .service-card:hover .service-icon {
+    transform: scale(1.1);
+  }
+  
+  .service-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+  
+  .service-description {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  
+  /* Swipeable Cards for >3 items */
+  @media (max-width: 1024px) {
+    .card-grid {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding: 1rem 0;
+      -webkit-overflow-scrolling: touch;
+      justify-content: flex-start;
+      scrollbar-width: none; /* Firefox */
+    }
+  
+    .card-grid::-webkit-scrollbar {
+      display: none; /* Chrome/Safari */
+    }
+  
+    .service-card {
+      scroll-snap-align: center;
+      min-width: 80%;
+      margin: 0 1rem;
+      flex-shrink: 0;
+    }
+  }
+  
+  /* For 3 or fewer cards - center them */
+  @media (min-width: 1024px) {
+    .card-grid[data-count="3"] .service-card {
+      max-width: 30%;
+    }
+  }
