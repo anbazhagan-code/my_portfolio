@@ -23,7 +23,7 @@ const ContactSection = () => {
     
     try {
       // Using Formspree free tier for form submission
-      const response = await fetch('https://formspree.io/f/your-form-id', {
+      const response = await fetch('https://formspree.io/f/mbloodgj', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -71,7 +71,7 @@ const ContactSection = () => {
               </div>
               <div>
                 <h4>Email</h4>
-                <a href="mailto:anbazhagan@zaroid.in">anbazhagan.code@gmail.com</a>
+                <a href="mailto:anbazhagan.code@gmail.com">anbazhagan.code@gmail.com</a>
               </div>
             </div>
 
@@ -81,13 +81,13 @@ const ContactSection = () => {
               </div>
               <div>
                 <h4>Phone</h4>
-                <a href="tel:+91XXXXXXXXXX">+91-9344230554</a>
+                <a href="tel:+919344230554">+91-9344230554</a>
               </div>
             </div>
 
             <div className="social-links">
               <motion.a 
-                href="https://linkedin.com/in/yourprofile" 
+                href="https://www.linkedin.com/in/anbazhagan-s-4121052ba" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 whileHover={{ y: -3 }}
@@ -95,7 +95,7 @@ const ContactSection = () => {
                 <FaLinkedin />
               </motion.a>
               <motion.a 
-                href="https://github.com/yourusername" 
+                href="https://github.com/anbazhagan-code" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 whileHover={{ y: -3 }}
@@ -103,7 +103,7 @@ const ContactSection = () => {
                 <FaGithub />
               </motion.a>
               <motion.a 
-                href="https://instagram.com/yourprofile" 
+                href="https://www.instagram.com/anbuazhagan_18/?hl=en" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 whileHover={{ y: -3 }}
