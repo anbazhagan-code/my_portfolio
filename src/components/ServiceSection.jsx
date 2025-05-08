@@ -18,7 +18,7 @@ const services = [
   },
   {
     title: 'WordPress Development',
-    description: 'Custom themes and plugins with easy admin panel management and SEO optimization.',
+    description: 'Build user-friendly e-commerce websites with custom themes and easy product management.',
     icon: <Monitor className="service-icon text-purple-400" />,
   },
   // Add more services if needed
@@ -46,7 +46,7 @@ const ServiceSection = () => {
               data-aos="fade-up"
               data-aos-delay={index * 100}
               className="service-card"
-              whileHover={{ scale: 1.05 }}
+              whileHover={{ scale: 1.01 }}
             >
               <div className="icon-wrapper">
                 {service.icon}
