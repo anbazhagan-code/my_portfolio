@@ -60,10 +60,6 @@
     opacity: 1;
   }
   
-  .service-card:hover::before {
-   
-  }
-  
   @keyframes shine {
     0% { left: -50%; }
     100% { left: 150%; }
@@ -163,9 +159,6 @@
     transition: background 0.3s;
   }
   
-  .arrow-controls button:hover {
-    background-color:;
-  }
   
   /* Hide arrows on large devices */
   @media (min-width: 992px) {

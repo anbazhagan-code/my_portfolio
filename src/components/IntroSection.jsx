@@ -5,6 +5,7 @@ import '../../assets/css/IntroSection.css';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { TypeAnimation } from 'react-type-animation';
+import { useInView } from 'react-intersection-observer';
 import profileImage from './assets/profile_1.png';
 
 const IntroSection = () => {
@@ -16,7 +17,7 @@ const IntroSection = () => {
       mirror: false
     });
   }, []);
-
+  
   return (
     <section id="home" className="intro-section">
       <div className="intro-container">
@@ -100,7 +101,6 @@ const IntroSection = () => {
           "Code is like poetry. When done well,
           it transforms complexity into elegance."
         </blockquote>
-        <div className="quote-author">- Anbazhagan</div>
         <div className="quote-decoration">❝</div>
       </div>
     </div>
