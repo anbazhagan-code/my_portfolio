@@ -51,17 +51,17 @@
     background: linear-gradient(
       45deg,
       rgba(100, 200, 200, 0.1) 0%,
-      rgba(100, 200, 200, 0.3) 50%,
+      rgba(100, 200, 200, 0.1) 50%,
       rgba(100, 200, 200, 0.1) 100%
     );
-    transform: rotate(45deg);
+    transform: rotate(70deg);
     transition: all 0.6s ease;
-    opacity: 0;
+    animation: shine 5s infinite;
+    opacity: 1;
   }
   
   .service-card:hover::before {
-    animation: shine 1.5s infinite;
-    opacity: 1;
+   
   }
   
   @keyframes shine {
@@ -97,7 +97,7 @@
   }
   
   /* Swipeable Cards for >3 items */
-  @media (max-width: 1024px) {
+  @media (max-width: 992px) {
     .card-grid {
       display: flex;
       overflow-x: auto;
@@ -111,9 +111,12 @@
     .card-grid::-webkit-scrollbar {
       display: none; /* Chrome/Safari */
     }
-  
+   #services{
+    padding:0;
+   }
     .service-card {
       scroll-snap-align: center;
+      padding: 2rem 1rem;
       min-width: 80%;
       margin: 0 1rem;
       flex-shrink: 0;
@@ -121,8 +124,60 @@
   }
   
   /* For 3 or fewer cards - center them */
-  @media (min-width: 1024px) {
+  @media (min-width: 992px) {
     .card-grid[data-count="3"] .service-card {
       max-width: 30%;
     }
   }
+  .card-scroll-wrapper {
+    position: relative;
+  }
+  
+  .card-grid {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 2rem;
+    padding: 1rem 0;
+    scrollbar-width: none;
+  }
+  .card-grid::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .arrow-controls {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  
+  .arrow-controls button {
+    background-color:rgb(0, 154, 156);
+    border-color:rgb(153, 192, 91);
+    color: white;
+    padding: 0.5rem 1rem;
+    font-size: 1.5rem;
+    border-radius: 9999px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .arrow-controls button:hover {
+    background-color:;
+  }
+  
+  /* Hide arrows on large devices */
+  @media (min-width: 992px) {
+    .arrow-controls {
+      display: none;
+    }
+  
+    .card-grid {
+      /* flex-wrap: wrap; */
+      justify-content: space-around;
+      overflow: visible;
+    }
+  
+  }
+  
