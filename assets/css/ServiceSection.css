@@ -1,6 +1,6 @@
 /* Service Section */
 #services {
-    padding: 1rem 0;
+    padding: 5rem 1.25rem;
     color: white;
   }
   
@@ -25,8 +25,7 @@
   
   /* Card Styles */
   .service-card {
-    background: linear-gradient(135deg,rgb(184, 235, 237) 0%,rgb(93, 135, 138) 100%);
-    color:black;
+    background: linear-gradient(135deg,rgb(33, 248, 255) 0%, #334155 100%);
     border-radius: 1rem;
     padding: 2.5rem;
     text-align: center;
@@ -45,8 +44,8 @@
   .service-card::before {
     content: '';
     position: absolute;
-    top: 0%;
-    left: 40%;
+    top: -50%;
+    left: -50%;
     width: 200%;
     height: 200%;
     background: linear-gradient(
@@ -56,17 +55,23 @@
       rgba(100, 200, 200, 0.1) 100%
     );
     transform: rotate(45deg);
-    animation: shinoeff 8s infinite;
+    transition: all 0.6s ease;
+    opacity: 0;
+  }
+  
+  .service-card:hover::before {
+    animation: shine 1.5s infinite;
     opacity: 1;
   }
   
-  @keyframes shinoeff {
-    0% { transform: translateX(-100%) rotate(90deg); }
-    100% { transform: translateX(100%) rotate(90deg); }
+  @keyframes shine {
+    0% { left: -50%; }
+    100% { left: 150%; }
   }
   
   /* Hover Effects */
   .service-card:hover {
+    transform: translateY(-10px);
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
   }
   
@@ -74,6 +79,10 @@
     font-size: 3rem;
     margin-bottom: 1.5rem;
     transition: all 0.3s ease;
+  }
+  
+  .service-card:hover .service-icon {
+    transform: scale(1.1);
   }
   
   .service-title {
