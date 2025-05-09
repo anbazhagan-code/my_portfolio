@@ -7,7 +7,7 @@ import SkillsSection from './components/SkillsSection';
 import EducationSection from './components/EducationSection';
 import WorkExperienceSection from './components/WorkExperienceSection';
 import ProjectsSection from './components/ProjectsSection';
-import TestimonialsSection from './components/TestimonialsSection';
+import ServiceSection from './components/ServiceSection';
 import ContactSection from './components/ContactSection';
 import './App.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
@@ -27,6 +27,7 @@ const App = () => {
         <>
           <Header />
           <IntroSection />
+          <ServiceSection />
           <SkillsSection />
           <EducationSection />
           <WorkExperienceSection />

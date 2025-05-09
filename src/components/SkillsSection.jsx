@@ -39,15 +39,25 @@ const SkillsSection = () => {
   return (
     <section id="skills" className="skills-section">
       <div className="skills-container">
+<<<<<<< HEAD
         <h2 className="skills-title" data-aos="fade-down">Skills</h2>
+=======
+        <h2 className="section-title" data-aos="fade-down">Skills</h2>
+>>>>>>> 175781c09c8de47e77fffa6d3ce3b2da20ae1d43
         <div className="skills-grid">
           {skillsData.map((skill, index) => (
             <div
               key={index}
               className={`skill-card ${visibleCards.includes(index) ? 'visible' : ''}`}
+<<<<<<< HEAD
               style={{ '--delay': `${index * 100}ms` }}
               data-aos="fade-up"
               data-aos-delay={index * 100}
+=======
+              style={{ '--delay': `${index * 200}ms` }}
+              data-aos="fade-up"
+              data-aos-delay={index * 200}
+>>>>>>> 175781c09c8de47e77fffa6d3ce3b2da20ae1d43
             >
               <div className="card-inner">
                 <div className="card-front">
