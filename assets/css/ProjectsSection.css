@@ -1,5 +1,5 @@
 .projects-section {
-    padding: 6rem 0;
+    padding: 3rem 0;
     position: relative;
   }
   
@@ -65,7 +65,7 @@
   .project-image img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: fill;
     transition: transform 0.5s ease;
   }
   
@@ -116,8 +116,37 @@
   }
   
   .project-content {
-    padding: 1.5rem;
+  position: relative;
+  padding: 1.5rem;
+  background-color:rgb(230, 230, 243);
+  overflow: hidden;
+  color: white;
+}
+
+.project-content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  transform: skewX(-20deg);
+  animation: shine 3s infinite;
+}
+
+@keyframes shine {
+  0% {
+    left: -75%;
   }
+  50% {
+    left: 125%;
+  }
+  100% {
+    left: 125%;
+  }
+}
+
   
   .project-content h3 {
     font-size: 1.4rem;
@@ -135,6 +164,13 @@
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
+  }
+
+  .tag:hover {
+    background: #6ba7c5;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(107, 167, 197, 0.3);
   }
   
   .tag {
