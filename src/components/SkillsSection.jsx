@@ -38,17 +38,17 @@ const SkillsSection = () => {
 
   return (
     <section id="skills" className="skills-section">
-      <div className="skills-container">
-        <h2 className="section-title" data-aos="fade-down">Skills</h2>
-        <div className="skills-grid">
-          {skillsData.map((skill, index) => (
-            <div
-              key={index}
-              className={`skill-card ${visibleCards.includes(index) ? 'visible' : ''}`}
-              style={{ '--delay': `${index * 200}ms` }}
-              data-aos="fade-up"
-              data-aos-delay={index * 200}
-            >
+  <div className="skills-container">
+    <h2 className="section-title" data-aos="fade-down">Skills</h2>
+    <div className="skills-grid">
+      {skillsData.map((skill, index) => (
+        <div
+          key={index}
+          className={`skill-card ${visibleCards.includes(index) ? 'visible' : ''}`}
+          style={{ '--delay': `${index * 100}ms` }}
+          data-aos="fade-up"
+          data-aos-delay={index * 100}
+        >
               <div className="card-inner">
                 <div className="card-front">
                   <div className="skill-icon">
