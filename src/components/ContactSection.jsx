@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { FaEnvelope, FaPhoneAlt, FaLinkedin, FaGithub, FaInstagram, FaPaperPlane } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import 'aos/dist/aos.css';
-import '../../assets/css/ContactSection.css';
+import './assets/ContactSection.css';
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({
