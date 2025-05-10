@@ -7,6 +7,7 @@ import '../../assets/css/ProjectsSection.css';
 const ProjectsSection = () => {
   const [activeFilter, setActiveFilter] = useState('All');
   const [hoveredProject, setHoveredProject] = useState(null);
+  const [showAll, setShowAll] = useState(false); // 👈 for toggling project view
 
   const projects = [
     {
@@ -29,15 +30,18 @@ const ProjectsSection = () => {
       github: "#",
       live: "#"
     },
-    
     // Add more projects as needed
   ];
 
   const filters = ['All', 'Full Stack', 'Frontend', 'CMS'];
 
-  const filteredProjects = activeFilter === 'All' 
-    ? projects 
+  const filteredProjects = activeFilter === 'All'
+    ? projects
     : projects.filter(project => project.category === activeFilter);
+
+  const displayedProjects = showAll
+    ? filteredProjects
+    : filteredProjects.slice(0, 3); // 👈 show only 3 if showAll is false
 
   return (
     <section id="projects" className="projects-section">
@@ -63,7 +67,10 @@ const ProjectsSection = () => {
             <button
               key={filter}
               className={`filter-btn ${activeFilter === filter ? 'active' : ''}`}
-              onClick={() => setActiveFilter(filter)}
+              onClick={() => {
+                setActiveFilter(filter);
+                setShowAll(false); // 👈 reset view on filter change
+              }}
             >
               {filter}
             </button>
@@ -71,7 +78,7 @@ const ProjectsSection = () => {
         </motion.div>
 
         <div className="projects-grid">
-          {filteredProjects.map((project, index) => (
+          {displayedProjects.map((project, index) => (
             <motion.div 
               key={project.id}
               className="project-card"
@@ -120,17 +127,19 @@ const ProjectsSection = () => {
           ))}
         </div>
 
-        <motion.div
-          className="view-more"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          viewport={{ once: true }}
-        >
-          <button className="cta-btn">
-            View More Projects <FaCode className="icon" />
-          </button>
-        </motion.div>
+        {filteredProjects.length > 3 && (
+          <motion.div
+            className="view-more"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            viewport={{ once: true }}
+          >
+            <button className="cta-btn" onClick={() => setShowAll(!showAll)}>
+              {showAll ? 'Show Less Projects' : 'View More Projects'} <FaCode className="icon" />
+            </button>
+          </motion.div>
+        )}
       </div>
     </section>
   );

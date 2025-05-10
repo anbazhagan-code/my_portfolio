@@ -1,8 +1,11 @@
 import React, { useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { Download, Mail } from 'lucide-react';
 import '../../assets/css/IntroSection.css';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import reactLogo from './assets/profile_1.png';
+import { TypeAnimation } from 'react-type-animation';
+import profileImage from './assets/profile_1.png';
 
 const IntroSection = () => {
   useEffect(() => {
@@ -15,27 +18,94 @@ const IntroSection = () => {
   }, []);
 
   return (
-    <section id="home" className="section container">
-      <div className="row">
+    <section id="home" className="intro-section">
+      <div className="intro-container">
         {/* Content Section */}
-        <div className="col-6 content" data-aos="fade-right" data-aos-delay="100">
-          <h2 className="title">Welcome!</h2>
-          <p className="subtitle">I'm Anbazhagan, a passionate Laravel and WordPress Developer.</p>
-          <div className="cta-container">
-            <button className="cta-button">View My Work</button>
-          </div>
-        </div>
-        
-        {/* Photo Section */}
-        <div className="col-6 photo" data-aos="fade-left" data-aos-delay="200">
-          <div className="image-container">
-          <img 
-              src={reactLogo} 
-              alt="Anbazhagan" 
-              className="profile-image" 
+        <motion.div 
+          className="intro-content"
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <h1 className="intro-title">
+            Hi, I'm <span className="highlight">Anbazhagan</span>
+          </h1>
+          <h2 className="intro-subtitle">
+            <TypeAnimation
+              sequence={[
+                'Laravel Developer',
+                1500,
+                'WordPress Developer',
+                1500,
+                'Full Stack Developer',
+                1500,
+                'Web Designer',
+                1500
+              ]}
+              wrapper="span"
+              cursor={true}
+              repeat={Infinity}
+              style={{ display: 'inline-block' }}
             />
+          </h2>
+          <p className="intro-description">
+            I craft robust web solutions with clean code and pixel-perfect designs. 
+            Passionate about creating seamless digital experiences that drive results.
+          </p>
+          
+          <div className="intro-cta">
+            <motion.button 
+              href="/cv.pdf"
+              download
+              className="cta-button primary"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Download size={18} className="icon" />
+              Download CV
+            </motion.button>
+            
+            <motion.button 
+              href="https://github.com/anbazhagan-code"
+              className="cta-button secondary"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              View My Work
+            </motion.button>
           </div>
-        </div>
+        </motion.div>
+
+        {/* Photo Section */}
+        <motion.div
+  className="intro-image flip-card"
+  initial={{ opacity: 0, scale: 0.8 }}
+  animate={{ opacity: 1, scale: 1 }}
+  transition={{ duration: 0.8, delay: 0.2 }}
+>
+  <div className="flip-card-inner">
+    {/* Front Side - Profile Photo */}
+    <div className="flip-card-front">
+      <img 
+        src={profileImage} 
+        alt="Anbazhagan" 
+        className="profile-image" 
+      />
+    </div>
+    
+    {/* Back Side - Quote */}
+    <div className="flip-card-back">
+      <div className="quote-content">
+        <blockquote>
+          "Code is like poetry. When done well,
+          it transforms complexity into elegance."
+        </blockquote>
+        <div className="quote-author">- Anbazhagan</div>
+        <div className="quote-decoration">❝</div>
+      </div>
+    </div>
+  </div>
+</motion.div>
       </div>
     </section>
   );
