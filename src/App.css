@@ -41,7 +41,44 @@ body {
   }
 }
 
+.welcome-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  color: #000000;
+}
 
+.welcome-screen h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.welcome-screen p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  padding: 0 1rem;
+}
+
+.welcome-screen button {
+  margin: 0.5rem;
+  padding: 12px 30px;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 30px;
+  background: linear-gradient(135deg, #000000 0%, #1bbec1 100%);
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.welcome-screen button:hover {
+  background-color: #29b6f6;
+  transform: translateY(-2px);
+}
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
@@ -138,6 +175,7 @@ body {
   color: #6c757d;
   text-decoration: none;
   transition: color 0.3s ease;
+  word-break: break-word;
 }
 
 .contact-method a:hover {

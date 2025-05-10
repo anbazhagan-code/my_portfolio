@@ -13,16 +13,34 @@ import './App.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
 const App = () => {
-  const [unlocked, setUnlocked] = useState(false);
+  const [showPrompt, setShowPrompt] = useState(true);
+  const [playGame, setPlayGame] = useState(false);
 
-  const handleUnlock = () => {
-    setUnlocked(true);
+  const handlePlayGame = () => {
+    setPlayGame(true);
+    setShowPrompt(false);
   };
+
+  const handleSkipGame = () => {
+    setPlayGame(false);
+    setShowPrompt(false);
+  };
+
+  if (showPrompt) {
+    return (
+      <div className="welcome-screen">
+        <h2 className='section-title'>Welcome!</h2>
+        <p>Do you want to play a game before viewing the portfolio?</p>
+        <button onClick={handlePlayGame}>Play Game</button>
+        <button onClick={handleSkipGame}>Skip Game</button>
+      </div>
+    );
+  }
 
   return (
     <div className="App">
-      {!unlocked ? (
-        <FruitNinja onUnlock={handleUnlock} />
+      {playGame ? (
+        <FruitNinja onUnlock={() => setPlayGame(false)} />
       ) : (
         <>
           <Header />

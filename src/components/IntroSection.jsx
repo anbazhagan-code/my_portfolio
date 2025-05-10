@@ -26,7 +26,7 @@ const IntroSection = () => {
           className="intro-content"
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 2 }}
         >
           <h1 className="intro-title">
             Hi, I'm <span className="matrix-highlight" data-text="Anbazhagan">Anbazhagan</span>
@@ -81,7 +81,7 @@ const IntroSection = () => {
   className="intro-image flip-card"
   initial={{ opacity: 0, scale: 0.8 }}
   animate={{ opacity: 1, scale: 1 }}
-  transition={{ duration: 0.8, delay: 0.2 }}
+  transition={{ duration: 2, delay: 0.2 }}
 >
   <div className="flip-card-inner">
     {/* Front Side - Profile Photo */}

@@ -45,7 +45,7 @@ const SkillsSection = () => {
         <div
           key={index}
           className={`skill-card ${visibleCards.includes(index) ? 'visible' : ''}`}
-          style={{ '--delay': `${index * 150}ms` }}
+          style={{ '--delay': `${index * 300}ms` }}
           data-aos="fade-up"
           data-aos-delay={index * 100}
         >

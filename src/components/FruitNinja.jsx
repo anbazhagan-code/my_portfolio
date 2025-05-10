@@ -148,7 +148,7 @@ const FruitNinja = ({ onUnlock }) => {
       if (cutFruits.length > 0) {
         setScore((prev) => {
           const newScore = prev + cutFruits.length;
-          if (newScore >= 50 && !unlocked) {
+          if (newScore >= 2 && !unlocked) {
             setUnlocked(true);
             onUnlock();
           }
@@ -238,7 +238,7 @@ const FruitNinja = ({ onUnlock }) => {
         </svg>
 
         <div className="scoreboard">
-          <p>Cut Fruits: {score} / 50</p>
+          <p>Cut Fruits: {score} / 25</p>
         </div>
       </div>
     </div>
