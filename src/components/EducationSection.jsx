@@ -36,7 +36,7 @@ const EducationSection = () => {
   return (
     <section id="education" className="education-section">
       <div className="container">
-        <h2 className="section-title" data-aos="fade-down">
+        <h2 className="section-title" data-aos="flip-down">
           Education
         </h2>
         

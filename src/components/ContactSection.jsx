@@ -49,7 +49,7 @@ const ContactSection = () => {
     <section id="contact" className="contact-section">
       <div className="contact-container">
         <motion.h2 
-          className="section-title"
+          className="section-title" data-aos="fade-down-right"
         >
           Do you have any Project? Let’s Talk
         </motion.h2>

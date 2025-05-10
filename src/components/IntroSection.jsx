@@ -29,7 +29,7 @@ const IntroSection = () => {
           transition={{ duration: 0.8 }}
         >
           <h1 className="intro-title">
-            Hi, I'm <span className="highlight">Anbazhagan</span>
+            Hi, I'm <span className="matrix-highlight" data-text="Anbazhagan">Anbazhagan</span>
           </h1>
           <h2 className="intro-subtitle">
             <TypeAnimation
@@ -56,21 +56,20 @@ const IntroSection = () => {
           
           <div className="intro-cta">
             <motion.button 
-              href="/cv.pdf"
-              download
               className="cta-button primary"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
+              onClick={() => window.open('/Anbu_Resume.pdf', '_blank')}
             >
               <Download size={18} className="icon" />
               Download CV
             </motion.button>
             
             <motion.button 
-              href="https://github.com/anbazhagan-code"
               className="cta-button secondary"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
+              onClick={() => window.location.href = 'https://github.com/anbazhagan-code'}
             >
               View My Work
             </motion.button>

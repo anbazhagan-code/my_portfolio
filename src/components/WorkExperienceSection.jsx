@@ -37,7 +37,7 @@ const WorkExperienceSection = () => {
   return (
     <section id="experience" className="work-experience">
       <div className="container">
-        <h2 className="section-title">
+        <h2 className="section-title" data-aos="zoom-in">
           Work Experience
         </h2>
         
