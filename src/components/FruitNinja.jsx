@@ -148,7 +148,7 @@ const FruitNinja = ({ onUnlock }) => {
       if (cutFruits.length > 0) {
         setScore((prev) => {
           const newScore = prev + cutFruits.length;
-          if (newScore >= 2 && !unlocked) {
+          if (newScore >= 25 && !unlocked) {
             setUnlocked(true);
             onUnlock();
           }
