@@ -1,5 +1,5 @@
 .intro-section {
-  min-height: 100vh;
+  min-height: 80vh;
   display: flex;
   align-items: center;
   padding: 2rem;
@@ -367,8 +367,5 @@ blockquote {
 @media (max-width: 400px) {
   .intro-title {
     font-size: 2rem;
-  }
-  .intro-image{
-    margin-top: 69px;
   }
 }
