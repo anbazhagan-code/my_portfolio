@@ -9,7 +9,7 @@ const EducationSection = () => {
     AOS.init({
       duration: 800,
       easing: 'ease-in-out',
-      once: true, // Animations trigger only once
+      once: false, // Animations trigger only once
     });
     AOS.refresh();
   }, []);

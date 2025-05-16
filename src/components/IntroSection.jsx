@@ -13,7 +13,7 @@ const IntroSection = () => {
     AOS.init({
       duration: 1000,
       easing: 'ease-in-out',
-      once: true,
+      once: false,
       mirror: false
     });
   }, []);
@@ -34,11 +34,9 @@ const IntroSection = () => {
           <h2 className="intro-subtitle">
             <TypeAnimation
               sequence={[
-                'Laravel Developer',
+                'Web Developer',
                 1500,
                 'WordPress Developer',
-                1500,
-                'Full Stack Developer',
                 1500,
                 'Web Designer',
                 1500

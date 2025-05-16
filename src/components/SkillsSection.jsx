@@ -21,7 +21,7 @@ const SkillsSection = () => {
   const [visibleCards, setVisibleCards] = useState([]);
 
   useEffect(() => {
-    AOS.init({ duration: 800, once: true });
+    AOS.init({ duration: 800, once: false });
     
     // Staggered animation for cards
     const timer = setTimeout(() => {
