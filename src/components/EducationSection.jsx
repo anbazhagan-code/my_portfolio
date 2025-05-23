@@ -9,7 +9,7 @@ const EducationSection = () => {
     AOS.init({
       duration: 800,
       easing: 'ease-in-out',
-      once: true, // Animations trigger only once
+      once: false, // Animations trigger only once
     });
     AOS.refresh();
   }, []);
@@ -36,7 +36,7 @@ const EducationSection = () => {
   return (
     <section id="education" className="education-section">
       <div className="container">
-        <h2 className="section-title" data-aos="fade-down">
+        <h2 className="section-title" data-aos="flip-down">
           Education
         </h2>
         

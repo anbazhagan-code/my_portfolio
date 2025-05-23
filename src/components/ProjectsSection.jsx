@@ -3,6 +3,8 @@ import { FaGithub, FaExternalLinkAlt, FaCode } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import 'aos/dist/aos.css';
 import '../../assets/css/ProjectsSection.css';
+import project1Img from './assets/project_1.jpg';
+import project2Img from './assets/project_2.jpg';
 
 const ProjectsSection = () => {
   const [activeFilter, setActiveFilter] = useState('All');
@@ -14,10 +16,10 @@ const ProjectsSection = () => {
       id: 1,
       title: "Portfolio Website",
       description: "Modern responsive portfolio showcasing my work with smooth animations and clean design.",
-      tags: ["React", "GSAP", "CSS3", "Responsive"],
-      category: "Frontend",
-      image: "/images/portfolio.jpg",
-      github: "#",
+      tags: ["React", "AOS", "CSS3", "Responsive"],
+      category: "Web",
+      image: project1Img,
+      github: "https://github.com/anbazhagan-code/my_portfolio",
       live: "#"
     },
     {
@@ -26,14 +28,14 @@ const ProjectsSection = () => {
       description: "WordPress-based dress shop with WooCommerce integration and custom theme development.",
       tags: ["WordPress", "WooCommerce", "PHP", "Elementor"],
       category: "CMS",
-      image: "/images/fashion.jpg",
-      github: "#",
+      image: project2Img,
+      github: "https://github.com/anbazhagan-code/wp_dress_shop",
       live: "#"
     },
     // Add more projects as needed
   ];
 
-  const filters = ['All', 'Full Stack', 'Frontend', 'CMS'];
+  const filters = ['All', 'Web', 'CMS'];
 
   const filteredProjects = activeFilter === 'All'
     ? projects
@@ -51,7 +53,7 @@ const ProjectsSection = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
         >
           My Projects
         </motion.h2>
@@ -61,7 +63,7 @@ const ProjectsSection = () => {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
         >
           {filters.map(filter => (
             <button
@@ -85,7 +87,7 @@ const ProjectsSection = () => {
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true }}
+              viewport={{ once: false }}
               onMouseEnter={() => setHoveredProject(project.id)}
               onMouseLeave={() => setHoveredProject(null)}
             >
@@ -101,16 +103,22 @@ const ProjectsSection = () => {
                     >
                       <FaGithub /> Code
                     </a>
-                    {project.live && (
+                    {project.live ? (
                       <a 
-                        href={project.live} 
-                        target="_blank" 
+                        href={project.live !== '#' ? project.live : '#'}
+                        target={project.live !== '#' ? '_blank' : '_self'}
                         rel="noopener noreferrer"
                         className="project-link"
+                        onClick={(e) => {
+                          if (project.live === '#') {
+                            e.preventDefault();
+                            alert('🚧 This project is not live yet!');
+                          }
+                        }}
                       >
                         <FaExternalLinkAlt /> Live
                       </a>
-                    )}
+                    ) : null}
                   </div>
                 </div>
               </div>
@@ -133,7 +141,7 @@ const ProjectsSection = () => {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
           >
             <button className="cta-btn" onClick={() => setShowAll(!showAll)}>
               {showAll ? 'Show Less Projects' : 'View More Projects'} <FaCode className="icon" />

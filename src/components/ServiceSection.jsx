@@ -27,7 +27,7 @@ const ServiceSection = () => {
   const scrollRef = useRef(null);
 
   useEffect(() => {
-    AOS.init({ duration: 1000, easing: 'ease-out', once: true });
+    AOS.init({ duration: 1000, easing: 'ease-out', once: false });
   }, []);
 
   const scroll = (direction) => {

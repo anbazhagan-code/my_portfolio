@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { FaEnvelope, FaPhoneAlt, FaLinkedin, FaGithub, FaInstagram, FaPaperPlane } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import 'aos/dist/aos.css';
-import '../../assets/css/ContactSection.css';
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({
@@ -49,7 +48,7 @@ const ContactSection = () => {
     <section id="contact" className="contact-section">
       <div className="contact-container">
         <motion.h2 
-          className="section-title"
+          className="section-title" data-aos="fade-down-right"
         >
           Do you have any Project? Let’s Talk
         </motion.h2>
@@ -61,7 +60,7 @@ const ContactSection = () => {
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
           >
             <h3>Contact Information</h3>
             
@@ -120,7 +119,7 @@ const ContactSection = () => {
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
           >
             <div className="form-group">
               <input 

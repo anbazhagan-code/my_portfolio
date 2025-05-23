@@ -93,4 +93,6 @@
   .sound-toggle-button:hover {
     background-color: rgba(0, 0, 0, 0.8);
   }
-  
+  .fruit-ninja-container{
+    position: fixed;
+  }
