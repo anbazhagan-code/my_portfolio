@@ -12,7 +12,7 @@ import ContactSection from './components/ContactSection';
 import './App.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
-const App = () => {
+/* const App = () => {
   const [showPrompt, setShowPrompt] = useState(true);
   const [playGame, setPlayGame] = useState(false);
 
@@ -54,6 +54,22 @@ const App = () => {
           <Footer />
         </>
       )}
+    </div>
+  );
+};
+*/
+const App = () => {
+  return (
+    <div className="App">
+      <Header />
+      <IntroSection />
+      <ServiceSection />
+      <SkillsSection />
+      <EducationSection />
+      <WorkExperienceSection />
+      <ProjectsSection />
+      <ContactSection />
+      <Footer />
     </div>
   );
 };

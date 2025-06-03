@@ -5,6 +5,8 @@ import 'aos/dist/aos.css';
 import '../../assets/css/ProjectsSection.css';
 import project1Img from './assets/project_1.jpg';
 import project2Img from './assets/project_2.jpg';
+import project3Img from './assets/project_3.jpg';
+import project4Img from './assets/project_4.jpg';
 
 const ProjectsSection = () => {
   const [activeFilter, setActiveFilter] = useState('All');
@@ -20,7 +22,7 @@ const ProjectsSection = () => {
       category: "Web",
       image: project1Img,
       github: "https://github.com/anbazhagan-code/my_portfolio",
-      live: "#"
+      live: "https://anbazhagan.netlify.app/"
     },
     {
       id: 2,
@@ -32,10 +34,30 @@ const ProjectsSection = () => {
       github: "https://github.com/anbazhagan-code/wp_dress_shop",
       live: "#"
     },
+    {
+      id: 3,
+      title: "React Mini Games",
+      description: "A collection of interactive mind games built with React, including Memory Match, Tic Tac Toe, Typing Test, and more.",
+      tags: ["React", "JavaScript", "Hooks", "Games"],
+      category: "Others",
+      image: project3Img,
+      github: "https://github.com/anbazhagan-code/mini-games",
+      live: "https://anbazhagan-code.github.io/mini-games/"
+    },
+    {
+      id: 4,
+      title: "Portfolio-2",
+      description: "A clean and responsive personal portfolio built with Bootstrap 5, AOS animations, and smooth scrolling.",
+      tags: ["Bootstrap", "HTML", "CSS", "AOS", "Responsive"],
+      category: "Web",
+      image: project4Img,
+      github: "https://github.com/anbazhagan-code/portfolio_2",
+      live: "#"
+    }
     // Add more projects as needed
   ];
 
-  const filters = ['All', 'Web', 'CMS'];
+  const filters = ['All', 'Web', 'CMS', 'Others'];
 
   const filteredProjects = activeFilter === 'All'
     ? projects

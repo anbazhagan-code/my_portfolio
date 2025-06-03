@@ -39,7 +39,7 @@ const SkillsSection = () => {
   return (
     <section id="skills" className="skills-section">
   <div className="skills-container">
-    <h2 className="section-title" data-aos="flip-up">Skills</h2>
+    <h2 className="section-title" data-aos="zoom-out">Skills</h2>
     <div className="skills-grid">
       {skillsData.map((skill, index) => (
         <div
