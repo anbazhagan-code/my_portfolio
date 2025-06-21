@@ -21,6 +21,36 @@ const services = [
     description: 'Build user-friendly e-commerce websites with custom themes and easy product management.',
     icon: <Monitor className="service-icon text-purple-400" />,
   },
+  // {
+  //   title: 'React Applications',
+  //   description: 'Interactive single-page applications with smooth animations and state management.',
+  //   icon: <Cpu className="service-icon text-red-400" />,
+  // },
+  // {
+  //   title: 'UI/UX Optimization',
+  //   description: 'Improve user experience and conversion rates through interface enhancements.',
+  //   icon: <Smile className="service-icon text-yellow-400" />,
+  // },
+  // {
+  //   title: 'Website Maintenance',
+  //   description: 'Ongoing support, updates, and performance optimization for existing sites.',
+  //   icon: <Settings className="service-icon text-gray-400" />,
+  // },
+  // {
+  //   title: 'Responsive Redesign',
+  //   description: 'Modernize older websites with mobile-first responsive designs.',
+  //   icon: <Smartphone className="service-icon text-indigo-400" />,
+  // },
+  // {
+  //   title: 'Frontend Consultation',
+  //   description: 'Expert advice on architecture, performance, and modern frontend practices.',
+  //   icon: <MessageSquare className="service-icon text-pink-400" />,
+  // },
+  // {
+  //   title: 'Interactive Games',
+  //   description: 'Browser-based games and interactive experiences built with JavaScript.',
+  //   icon: <Gamepad2 className="service-icon text-orange-400" />,
+  // }
 ];
 
 const ServiceSection = () => {

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { FaGithub, FaExternalLinkAlt, FaCode } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import 'aos/dist/aos.css';
@@ -9,6 +9,7 @@ import project3Img from './assets/project_3.jpg';
 import project4Img from './assets/project_4.jpg';
 
 const ProjectsSection = () => {
+  const gridTopRef = useRef(null);
   const [activeFilter, setActiveFilter] = useState('All');
   const [hoveredProject, setHoveredProject] = useState(null);
   const [showAll, setShowAll] = useState(false); // 👈 for toggling project view
@@ -101,7 +102,7 @@ const ProjectsSection = () => {
           ))}
         </motion.div>
 
-        <div className="projects-grid">
+        <div className="projects-grid" ref={gridTopRef}>
           {displayedProjects.map((project, index) => (
             <motion.div 
               key={project.id}
@@ -165,7 +166,19 @@ const ProjectsSection = () => {
             transition={{ duration: 0.5, delay: 0.4 }}
             viewport={{ once: false }}
           >
-            <button className="cta-btn" onClick={() => setShowAll(!showAll)}>
+            <button
+              className="cta-btn"
+              onClick={() => {
+                if (showAll) {
+                  setShowAll(false);
+                  setTimeout(() => {
+                    gridTopRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  }, 100);
+                } else {
+                  setShowAll(true);
+                }
+              }}
+            >
               {showAll ? 'Show Less Projects' : 'View More Projects'} <FaCode className="icon" />
             </button>
           </motion.div>
