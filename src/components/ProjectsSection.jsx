@@ -1,18 +1,19 @@
 import React, { useState, useRef } from 'react';
-import { FaGithub, FaExternalLinkAlt, FaCode } from 'react-icons/fa';
-import { motion } from 'framer-motion';
-import 'aos/dist/aos.css';
+import { FaGithub, FaExternalLinkAlt, FaCode, FaFilter, FaTimes } from 'react-icons/fa';
 import '../../assets/css/ProjectsSection.css';
 import project1Img from './assets/project_1.jpg';
 import project2Img from './assets/project_2.jpg';
 import project3Img from './assets/project_3.jpg';
 import project4Img from './assets/project_4.jpg';
+import project5Img from './assets/project_5.png';
+import project6Img from './assets/project_6.png';
 
 const ProjectsSection = () => {
   const gridTopRef = useRef(null);
   const [activeFilter, setActiveFilter] = useState('All');
   const [hoveredProject, setHoveredProject] = useState(null);
-  const [showAll, setShowAll] = useState(false); // 👈 for toggling project view
+  const [showAll, setShowAll] = useState(false);
+  const [mobileFilterOpen, setMobileFilterOpen] = useState(false);
 
   const projects = [
     {
@@ -23,7 +24,8 @@ const ProjectsSection = () => {
       category: "Web",
       image: project1Img,
       github: "https://github.com/anbazhagan-code/my_portfolio",
-      live: "https://anbazhagan.netlify.app/"
+      live: "https://anbazhagan.netlify.app/",
+      featured: true
     },
     {
       id: 2,
@@ -33,7 +35,8 @@ const ProjectsSection = () => {
       category: "CMS",
       image: project2Img,
       github: "https://github.com/anbazhagan-code/wp_dress_shop",
-      live: "#"
+      live: "#",
+      featured: false
     },
     {
       id: 3,
@@ -43,7 +46,8 @@ const ProjectsSection = () => {
       category: "Others",
       image: project3Img,
       github: "https://github.com/anbazhagan-code/mini-games",
-      live: "https://anbazhagan-code.github.io/mini-games/"
+      live: "https://anbazhagan-code.github.io/mini-games/",
+      featured: true
     },
     {
       id: 4,
@@ -53,9 +57,31 @@ const ProjectsSection = () => {
       category: "Web",
       image: project4Img,
       github: "https://github.com/anbazhagan-code/portfolio_2",
-      live: "#"
+      live: "#",
+      featured: false
+    },
+    {
+      id: 5,
+      title: "Mental Health Counseling Website",
+      description: "Static Mental Health Counseling Website with modern design and responsive layout.",
+      tags: ["Bootstrap", "HTML", "CSS", "AOS", "Responsive"],
+      category: "Web",
+      image: project5Img,
+      github: "https://github.com/anbazhagan-code/THULIR-IDAM",
+      live: "https://thuliridam.netlify.app/",
+      featured: false
+    },
+    {
+      id: 6,
+      title: "Taxi Booking Application",
+      description: "Complete taxi booking system with Laravel backend, Filament admin panel, and MySQL database.",
+      tags: ["Laravel", "Bootstrap", "MySQL", "Filament", "PHP"],
+      category: "Web",
+      image: project6Img,
+      github: "#",
+      live: "https://friendstrack.cloud/",
+      featured: true
     }
-    // Add more projects as needed
   ];
 
   const filters = ['All', 'Web', 'CMS', 'Others'];
@@ -66,108 +92,134 @@ const ProjectsSection = () => {
 
   const displayedProjects = showAll
     ? filteredProjects
-    : filteredProjects.slice(0, 3); // 👈 show only 3 if showAll is false
+    : filteredProjects.slice(0, 3);
 
   return (
     <section id="projects" className="projects-section">
-      <div className="container">
-        <motion.h2 
-          className="section-title"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: false }}
-        >
-          My Projects
-        </motion.h2>
+      <div className="projects-container">
+        <div className="projects-header">
+          <span className="section-badge">
+            <FaCode className="tag-icon" />
+            My Work
+          </span>
+          <h2 className="section-title">
+            Featured <span className="gradient-text">Projects</span>
+          </h2>
+          <p className="section-subtitle">
+            A showcase of my best work and technical expertise
+          </p>
+        </div>
 
-        <motion.div 
-          className="filters"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          viewport={{ once: false }}
-        >
+        {/* Filter Buttons - Desktop */}
+        <div className="filters-desktop">
           {filters.map(filter => (
             <button
               key={filter}
               className={`filter-btn ${activeFilter === filter ? 'active' : ''}`}
               onClick={() => {
                 setActiveFilter(filter);
-                setShowAll(false); // 👈 reset view on filter change
+                setShowAll(false);
               }}
             >
               {filter}
+              {activeFilter === filter && <span className="filter-count">{filteredProjects.length}</span>}
             </button>
           ))}
-        </motion.div>
+        </div>
 
+        {/* Filter Dropdown - Mobile */}
+        <div className="filters-mobile">
+          <button 
+            className="mobile-filter-btn"
+            onClick={() => setMobileFilterOpen(!mobileFilterOpen)}
+          >
+            <FaFilter />
+            {activeFilter}
+            <span className="filter-count">{filteredProjects.length}</span>
+          </button>
+          {mobileFilterOpen && (
+            <div className="mobile-filter-dropdown">
+              {filters.map(filter => (
+                <button
+                  key={filter}
+                  className={`mobile-filter-option ${activeFilter === filter ? 'active' : ''}`}
+                  onClick={() => {
+                    setActiveFilter(filter);
+                    setShowAll(false);
+                    setMobileFilterOpen(false);
+                  }}
+                >
+                  {filter}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* Projects Grid */}
         <div className="projects-grid" ref={gridTopRef}>
           {displayedProjects.map((project, index) => (
-            <motion.div 
+            <div 
               key={project.id}
-              className="project-card"
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: false }}
+              className={`project-card ${project.featured ? 'featured' : ''}`}
               onMouseEnter={() => setHoveredProject(project.id)}
               onMouseLeave={() => setHoveredProject(null)}
+              style={{ animationDelay: `${index * 0.1}s` }}
             >
+              {project.featured && (
+                <div className="featured-badge">
+                  <FaCode />
+                  Featured
+                </div>
+              )}
+              
               <div className="project-image">
                 <img src={project.image} alt={project.title} />
-                <div className={`overlay ${hoveredProject === project.id ? 'active' : ''}`}>
-                  <div className="overlay-content">
+                <div className={`project-overlay ${hoveredProject === project.id ? 'active' : ''}`}>
+                  <div className="overlay-buttons">
                     <a 
                       href={project.github} 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      className="project-link"
+                      className="overlay-btn github"
                     >
-                      <FaGithub /> Code
+                      <FaGithub />
+                      <span>Code</span>
                     </a>
-                    {project.live ? (
+                    {project.live && project.live !== '#' && (
                       <a 
-                        href={project.live !== '#' ? project.live : '#'}
-                        target={project.live !== '#' ? '_blank' : '_self'}
+                        href={project.live}
+                        target="_blank"
                         rel="noopener noreferrer"
-                        className="project-link"
-                        onClick={(e) => {
-                          if (project.live === '#') {
-                            e.preventDefault();
-                            alert('🚧 This project is not live yet!');
-                          }
-                        }}
+                        className="overlay-btn live"
                       >
-                        <FaExternalLinkAlt /> Live
+                        <FaExternalLinkAlt />
+                        <span>Live Demo</span>
                       </a>
-                    ) : null}
+                    )}
                   </div>
                 </div>
               </div>
+              
               <div className="project-content">
-                <h3>{project.title}</h3>
-                <p>{project.description}</p>
+                <div className="project-category">{project.category}</div>
+                <h3 className="project-title">{project.title}</h3>
+                <p className="project-description">{project.description}</p>
                 <div className="project-tags">
                   {project.tags.map(tag => (
                     <span key={tag} className="tag">{tag}</span>
                   ))}
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
 
+        {/* View More Button */}
         {filteredProjects.length > 3 && (
-          <motion.div
-            className="view-more"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            viewport={{ once: false }}
-          >
+          <div className="view-more">
             <button
-              className="cta-btn"
+              className="view-more-btn"
               onClick={() => {
                 if (showAll) {
                   setShowAll(false);
@@ -179,9 +231,10 @@ const ProjectsSection = () => {
                 }
               }}
             >
-              {showAll ? 'Show Less Projects' : 'View More Projects'} <FaCode className="icon" />
+              {showAll ? 'Show Less Projects' : `View All Projects (${filteredProjects.length})`}
+              {showAll ? <FaTimes /> : <FaExternalLinkAlt />}
             </button>
-          </motion.div>
+          </div>
         )}
       </div>
     </section>

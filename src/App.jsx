@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import FruitNinja from './components/FruitNinja';
+import { ThemeProvider } from './context/ThemeContext';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import IntroSection from './components/IntroSection';
@@ -60,17 +61,19 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 */
 const App = () => {
   return (
-    <div className="App">
-      <Header />
-      <IntroSection />
-      <ServiceSection />
-      <SkillsSection />
-      <EducationSection />
-      <WorkExperienceSection />
-      <ProjectsSection />
-      <ContactSection />
-      <Footer />
-    </div>
+    <ThemeProvider>
+      <div className="App">
+        <Header />
+        <IntroSection />
+        <ServiceSection />
+        <SkillsSection />
+        <EducationSection />
+        <WorkExperienceSection />
+        <ProjectsSection />
+        <ContactSection />
+        <Footer />
+      </div>
+    </ThemeProvider>
   );
 };
 

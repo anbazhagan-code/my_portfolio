@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import { FaEnvelope, FaPhoneAlt, FaLinkedin, FaGithub, FaInstagram, FaPaperPlane } from 'react-icons/fa';
-import { motion } from 'framer-motion';
-import 'aos/dist/aos.css';
+import { 
+  FaEnvelope, FaPhoneAlt, FaLinkedin, FaGithub, 
+  FaInstagram, FaPaperPlane, FaMapMarkerAlt, 
+  FaClock, FaCheckCircle, FaExclamationCircle 
+} from 'react-icons/fa';
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({
@@ -21,7 +23,6 @@ const ContactSection = () => {
     setIsSubmitting(true);
     
     try {
-      // Using Formspree free tier for form submission
       const response = await fetch('https://formspree.io/f/mbloodgj', {
         method: 'POST',
         headers: {
@@ -47,153 +48,174 @@ const ContactSection = () => {
   return (
     <section id="contact" className="contact-section">
       <div className="contact-container">
-        <motion.h2 
-          className="section-title" data-aos="slide-down"
-        >
-          Do you have any Project? Let’s Talk
-        </motion.h2>
+        <div className="contact-header">
+          <span className="section-badge"><FaEnvelope className="tag-icon" />Get In Touch</span>
+          <h2 className="section-title">
+            Let's Work <span className="gradient-text">Together</span>
+          </h2>
+          <p className="section-subtitle">
+            Have a project in mind? I'd love to hear about it
+          </p>
+        </div>
 
         <div className="contact-grid">
           {/* Left Side - Contact Info */}
-          <motion.div 
-            className="contact-info-card"
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            viewport={{ once: false }}
-          >
-            <h3>Contact Information</h3>
-            
-            <div className="contact-method">
-              <div className="icon-circle">
-                <FaEnvelope className="icon" />
+          <div className="contact-info">
+            <div className="info-card">
+              <div className="info-header">
+                <h3>Contact Information</h3>
+                <p>Feel free to reach out anytime</p>
               </div>
-              <div>
-                <h4>Email</h4>
-                <a href="mailto:anbazhagan.code@gmail.com">anbazhagan.code@gmail.com</a>
-              </div>
-            </div>
+              
+              <div className="info-items">
+                <div className="info-item">
+                  <div className="info-icon email">
+                    <FaEnvelope />
+                  </div>
+                  <div className="info-details">
+                    <h4>Email Me</h4>
+                    <a href="mailto:anbazhagan.code@gmail.com">anbazhagan.code@gmail.com</a>
+                  </div>
+                </div>
 
-            <div className="contact-method">
-              <div className="icon-circle">
-                <FaPhoneAlt className="icon" />
-              </div>
-              <div>
-                <h4>Phone</h4>
-                <a href="tel:+919344230554">+91-9344230554</a>
-              </div>
-            </div>
+                <div className="info-item">
+                  <div className="info-icon phone">
+                    <FaPhoneAlt />
+                  </div>
+                  <div className="info-details">
+                    <h4>Call Me</h4>
+                    <a href="tel:+919344230554">+91-9344230554</a>
+                  </div>
+                </div>
 
-            <div className="social-links">
-              <motion.a 
-                href="https://www.linkedin.com/in/anbazhagan-s-4121052ba" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                whileHover={{ y: -3 }}
-              >
-                <FaLinkedin />
-              </motion.a>
-              <motion.a 
-                href="https://github.com/anbazhagan-code" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                whileHover={{ y: -3 }}
-              >
-                <FaGithub />
-              </motion.a>
-              <motion.a 
-                href="https://www.instagram.com/anbuazhagan_18/?hl=en" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                whileHover={{ y: -3 }}
-              >
-                <FaInstagram />
-              </motion.a>
+                <div className="info-item">
+                  <div className="info-icon location">
+                    <FaMapMarkerAlt />
+                  </div>
+                  <div className="info-details">
+                    <h4>Location</h4>
+                    <span>Pudukkottai, India</span>
+                  </div>
+                </div>
+
+                {/* <div className="info-item">
+                  <div className="info-icon hours">
+                    <FaClock />
+                  </div>
+                  <div className="info-details">
+                    <h4>Working Hours</h4>
+                    <span>Mon-Fri: 9AM - 6PM</span>
+                  </div>
+                </div> */}
+              </div>
+
+              <div className="social-section">
+                <h4>Connect With Me</h4>
+                <div className="social-links">
+                  <a 
+                    href="https://www.linkedin.com/in/anbazhagan-s-4121052ba" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="social-link linkedin"
+                  >
+                    <FaLinkedin />
+                  </a>
+                  <a 
+                    href="https://github.com/anbazhagan-code" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="social-link github"
+                  >
+                    <FaGithub />
+                  </a>
+                  <a 
+                    href="https://www.instagram.com/anbuazhagan_18/?hl=en" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="social-link instagram"
+                  >
+                    <FaInstagram />
+                  </a>
+                </div>
+              </div>
             </div>
-          </motion.div>
+          </div>
 
           {/* Right Side - Contact Form */}
-          <motion.form 
-            className="contact-form"
-            onSubmit={handleSubmit}
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            viewport={{ once: false }}
-          >
-            <div className="form-group">
-              <input 
-                type="text" 
-                name="name" 
-                value={formData.name}
-                onChange={handleChange}
-                placeholder=" " 
-                required 
-              />
-              <label>Your Name</label>
-              <span className="focus-border"></span>
-            </div>
+          <div className="contact-form-wrapper">
+            <form className="contact-form" onSubmit={handleSubmit}>
+              <div className="form-header">
+                <h3>Send a Message</h3>
+                <p>I'll get back to you within 24 hours</p>
+              </div>
+              
+              <div className="form-group">
+                <input 
+                  type="text" 
+                  name="name" 
+                  value={formData.name}
+                  onChange={handleChange}
+                  required 
+                />
+                <label>Your Name</label>
+                <span className="focus-border"></span>
+              </div>
 
-            <div className="form-group">
-              <input 
-                type="email" 
-                name="email" 
-                value={formData.email}
-                onChange={handleChange}
-                placeholder=" " 
-                required 
-              />
-              <label>Your Email</label>
-              <span className="focus-border"></span>
-            </div>
+              <div className="form-group">
+                <input 
+                  type="email" 
+                  name="email" 
+                  value={formData.email}
+                  onChange={handleChange}
+                  required 
+                />
+                <label>Your Email</label>
+                <span className="focus-border"></span>
+              </div>
 
-            <div className="form-group">
-              <textarea 
-                name="message" 
-                value={formData.message}
-                onChange={handleChange}
-                placeholder=" " 
-                required 
-              ></textarea>
-              <label>Your Message</label>
-              <span className="focus-border"></span>
-            </div>
+              <div className="form-group">
+                <textarea 
+                  name="message" 
+                  value={formData.message}
+                  onChange={handleChange}
+                  required 
+                ></textarea>
+                <label>Your Message</label>
+                <span className="focus-border"></span>
+              </div>
 
-            <motion.button 
-              type="submit" 
-              className="submit-btn"
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.98 }}
-              disabled={isSubmitting}
-            >
-              {isSubmitting ? (
-                'Sending...'
-              ) : (
-                <>
-                  <FaPaperPlane className="send-icon" /> Send Message
-                </>
+              <button 
+                type="submit" 
+                className="submit-btn"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? (
+                  <>
+                    <div className="spinner"></div>
+                    Sending...
+                  </>
+                ) : (
+                  <>
+                    <FaPaperPlane /> Send Message
+                  </>
+                )}
+              </button>
+
+              {submitStatus === 'success' && (
+                <div className="status-message success">
+                  <FaCheckCircle />
+                  Message sent successfully! I'll get back to you soon.
+                </div>
               )}
-            </motion.button>
-
-            {submitStatus === 'success' && (
-              <motion.div 
-                className="status-message success"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-              >
-                Message sent successfully!
-              </motion.div>
-            )}
-            {submitStatus === 'error' && (
-              <motion.div 
-                className="status-message error"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-              >
-                Error sending message. Please try again.
-              </motion.div>
-            )}
-          </motion.form>
+              
+              {submitStatus === 'error' && (
+                <div className="status-message error">
+                  <FaExclamationCircle />
+                  Error sending message. Please try again.
+                </div>
+              )}
+            </form>
+          </div>
         </div>
       </div>
     </section>

@@ -1,73 +1,131 @@
-import React from 'react';
-import { FaBriefcase, FaCalendarAlt, FaMapMarkerAlt } from 'react-icons/fa';
-import '../../assets/css/WorkExperienceSection.css'; // Create this CSS file
+import React, { useEffect, useRef } from 'react';
+import { FaBriefcase, FaCalendarAlt, FaMapMarkerAlt, FaBuilding } from 'react-icons/fa';
+import '../../assets/css/WorkExperienceSection.css';
 
 const WorkExperienceSection = () => {
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const items = document.querySelectorAll('.timeline-item');
+            items.forEach((item, index) => {
+              setTimeout(() => {
+                item.classList.add('visible');
+              }, index * 200);
+            });
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
+
   const experiences = [
     {
       id: 1,
       role: "Web Developer",
-      company: "Zaroid Technologies",
-      duration: "Feb 2025 - Present",
-      location: "Kumbakonam, India",
+      company: "Salesqueen Software Solution",
+      duration: "Feb 2026 - Present",
+      location: "Chennai, India",
       responsibilities: [
-        "Developing responsive web applications using modern frameworks.",
-        "Creating and customizing WordPress websites based on client requirements.",
-        "Managing and maintaining Laravel-based backend systems.",
-        "Testing and debugging applications to ensure cross-browser compatibility and performance."
+        "Working on ERP-based web applications using CodeIgniter framework",
+        "Developing and maintaining modules for inventory, billing, and user management",
+        "Improving UI and functionality for internal business workflows",
+        "Debugging issues and optimizing application performance"
       ],
-      skills: ["HTML/CSS", "JavaScript", "Bootstrap", "Laravel", "Wordpress", "MySQL"]
+      skills: ["CodeIgniter", "PHP", "MySQL", "JavaScript", "HTML/CSS", "Bootstrap"]
     },
     {
       id: 2,
-      role: "Intern Web Developer",
-      company: "Sivasethu Infotech",
-      duration: "Apr 2024 - May 2024",
+      role: "Web Developer",
+      company: "Sivasethu Info Tech",
+      duration: "Feb 2025 - Jan 2026",
       location: "Trichy, India",
       responsibilities: [
-        "Learned industry best practices for web development.",
-        "Assisted in developing and maintaining company websites.",
-        "Worked on the development of an online exam portal, focusing on user interface and functionality."
+        "Developed CRM and eCommerce web applications using Laravel framework",
+        "Built and customized WordPress websites based on client requirements",
+        "Created responsive static websites using HTML, CSS, and JavaScript",
+        "Handled bug fixing, testing, and deployment support for live projects"
       ],
-      skills: ["HTML/CSS", "JavaScript", "PHP", "MySQL"]
+      skills: ["Laravel", "WordPress", "PHP", "MySQL", "JavaScript", "HTML/CSS", "Bootstrap"]
     }
-    
   ];
 
   return (
-    <section id="experience" className="work-experience">
-      <div className="container">
-        <h2 className="section-title" data-aos="zoom-in">
-          Work Experience
-        </h2>
-        
+    <section id="experience" className="experience-section" ref={sectionRef}>
+      <div className="experience-container">
+        <div className="experience-header">
+          <span className="section-badge">
+            <FaBriefcase className="tag-icon" />
+            Career Journey
+          </span>
+          <h2 className="section-title">
+            Work <span className="gradient-text">Experience</span>
+          </h2>
+          <p className="section-subtitle">
+            Professional experience building web solutions
+          </p>
+        </div>
+
         <div className="timeline">
           {experiences.map((exp, index) => (
             <div 
               key={exp.id}
               className={`timeline-item ${index % 2 === 0 ? 'left' : 'right'}`}
-              data-aos="fade-up"
-              data-aos-delay={index * 100}
             >
+              <div className="timeline-dot">
+                <div className="dot-inner"></div>
+              </div>
+              
               <div className="timeline-card">
-                <div className="card-header">
-                  <h3>{exp.role}</h3>
-                  <h4>{exp.company}</h4>
-                  <div className="meta">
-                    <span><FaCalendarAlt /> {exp.duration}</span>
-                    <span><FaMapMarkerAlt /> {exp.location}</span>
+                <div className="card-header flex-column">
+                  <div className="role-badge">
+                    <FaBriefcase />
+                    <span>{exp.role}</span>
+                  </div>
+                  
+                  <div className="company-info">
+                    <FaBuilding />
+                    <h3>{exp.company}</h3>
+                  </div>
+                  
+                  <div className="meta-info">
+                    <div className="meta-item">
+                      <FaCalendarAlt />
+                      <span>{exp.duration}</span>
+                    </div>
+                    <div className="meta-item">
+                      <FaMapMarkerAlt />
+                      <span>{exp.location}</span>
+                    </div>
                   </div>
                 </div>
+                
                 <div className="card-body">
-                  <h5>Key Responsibilities:</h5>
-                  <ul>
+                  <h4>Key Responsibilities</h4>
+                  <ul className="responsibilities-list">
                     {exp.responsibilities.map((item, i) => (
                       <li key={i}>{item}</li>
                     ))}
                   </ul>
                 </div>
+                
                 <div className="card-footer">
-                  <div className="skills">
+                  <h4>Technologies Used</h4>
+                  <div className="skills-cloud">
                     {exp.skills.map((skill, i) => (
                       <span key={i} className="skill-tag">{skill}</span>
                     ))}
