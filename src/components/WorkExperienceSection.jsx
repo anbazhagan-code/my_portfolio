@@ -36,20 +36,34 @@ const WorkExperienceSection = () => {
   const experiences = [
     {
       id: 1,
-      role: "Web Developer",
+      role: "PHP Developer",
+      company: "OCTS Pvt Ltd",
+      duration: "Aug 2026 - Present",
+      location: "Karaikudi, India",
+      responsibilities: [
+        "Working on a Laravel-based appointment booking web application",
+        "Developing and maintaining backend functionality, business logic, and application workflows",
+        "Implementing UI fixes and enhancements to improve responsiveness and usability",
+        "Testing application workflows, fixing bugs, and improving application stability and performance"
+      ],
+      skills: ["Laravel", "PHP", "MySQL", "JavaScript", "HTML/CSS", "Bootstrap", "ReactJS"]
+    },
+    {
+      id: 2,
+      role: "Backend Developer",
       company: "Salesqueen Software Solution",
-      duration: "Feb 2026 - Present",
+      duration: "Feb 2026 - Apr 2026",
       location: "Chennai, India",
       responsibilities: [
-        "Working on ERP-based web applications using CodeIgniter framework",
-        "Developing and maintaining modules for inventory, billing, and user management",
-        "Improving UI and functionality for internal business workflows",
-        "Debugging issues and optimizing application performance"
+        "Maintained and enhanced ERP modules using CodeIgniter and PHP",
+        "Developed and maintained modules for inventory, billing, and user management",
+        "Built new features and improved existing functionality for internal business workflows",
+        "Debugged issues and optimized application performance and stability"
       ],
       skills: ["CodeIgniter", "PHP", "MySQL", "JavaScript", "HTML/CSS", "Bootstrap"]
     },
     {
-      id: 2,
+      id: 3,
       role: "Web Developer",
       company: "Sivasethu Info Tech",
       duration: "Feb 2025 - Jan 2026",
